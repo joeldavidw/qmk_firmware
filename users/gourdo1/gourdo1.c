@@ -101,10 +101,8 @@ __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *
 bool process_record_user(uint16_t keycode, keyrecord_t * record) {
     mod_state = get_mods();
     if (!process_record_keymap(keycode, record)) { return false; }
-    if (!process_capsnum(keycode, record)) { return false; }
     if (!process_esc_to_base(keycode, record)) { return false; }
     if (!process_lsft_for_caps(keycode, record)) { return false; }
-    if (!process_autocorrection(keycode, record)) { return false; }
 
     // Key macros ...
     switch (keycode) {
@@ -365,43 +363,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t * record) {
             if (record -> event.pressed) {
                 register_code(KC_MPLY);
             } else unregister_code16(keycode);
-        }
-        break;
-
-        // DotCom domain macros
-    case DOTCOM:
-        if (record -> event.pressed) {
-            send_string(".com");
-        } else {
-            // when keycode is released
-        }
-        break;
-    case YAHOO:
-        if (record -> event.pressed) {
-            send_string("yahoo.com");
-        } else {
-            // when keycode is released
-        }
-        break;
-    case OUTLOOK:
-        if (record -> event.pressed) {
-            send_string("outlook.com");
-        } else {
-            // when keycode is released
-        }
-        break;
-    case GMAIL:
-        if (record -> event.pressed) {
-            send_string("gmail.com");
-        } else {
-            // when keycode is released
-        }
-        break;
-    case HOTMAIL:
-        if (record -> event.pressed) {
-            send_string("hotmail.com");
-        } else {
-            // when keycode is released
         }
         break;
 
